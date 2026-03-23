@@ -33,7 +33,7 @@
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "bms_logger.h"
 /* add user code end private includes */
 
 /* private typedef -----------------------------------------------------------*/
@@ -226,5 +226,8 @@ void USBFS_MAPL_IRQHandler(void)
 }
 
 /* add user code begin 1 */
-
+void USART1_IRQHandler(void)
+{
+  bms_uart_irq_handler();
+}
 /* add user code end 1 */

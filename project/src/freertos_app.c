@@ -12,7 +12,7 @@
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "bms_logger.h"
 /* add user code end private includes */
 
 /* private typedef -----------------------------------------------------------*/
@@ -150,8 +150,15 @@ void my_task01_func(void *pvParameters)
     wk_usb_app_task();
 
   /* add user code begin my_task01_func 1 */
+    static uint32_t tick = 0;
+    tick++;
+    if (tick >= 500) {          /* ~500 ms heartbeat (assumes 1 ms tick) */
+        tick = 0;
+        bms_led_toggle();
+        bms_logger_flush();
+    }
 
-    vTaskDelay(1);
+    vTaskDelay(pdMS_TO_TICKS(1));
 
   /* add user code end my_task01_func 1 */
   }

@@ -33,7 +33,7 @@
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "bms_logger.h"
 /* add user code end private includes */
 
 /* private typedef -----------------------------------------------------------*/
@@ -87,7 +87,8 @@ void wk_usb_app_init(void)
   usbd_connect(&usb_core_dev);
 
   /* add user code begin usb_app_init 1 */
-
+  /* block SD logger while USB MSD is mounted */
+  bms_usb_msd_set_active(true);
   /* add user code end usb_app_init 1 */
 }
 
@@ -109,7 +110,13 @@ void wk_usb_app_task(void)
   */
 
   /* add user code begin usb_app_task 2 */
-
+  /* Re-enable logging when USB transitions to suspended/disconnected state */
+  if ((usb_core_dev.conn_state == USB_CONN_STATE_SUSPENDED ||
+       usb_core_dev.conn_state == USB_CONN_STATE_DEFAULT) &&
+      usb_core_dev.old_conn_state == USB_CONN_STATE_CONFIGURED &&
+      bms_usb_msd_is_active()) {
+      bms_usb_msd_set_active(false);
+  }
   /* add user code end usb_app_task 2 */
 }
 

@@ -33,7 +33,7 @@
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "bms_logger.h"
 /* add user code end private includes */
 
 /* private typedef -----------------------------------------------------------*/
@@ -118,7 +118,10 @@ int main(void)
   fatfs_disk_init();
 
   /* add user code begin 2 */
-
+  /* init BMS logger (UART RX, SD logger, LED) */
+  bms_uart_init();
+  bms_logger_init();
+  bms_led_set(true);  /* LED on = system ready */
   /* add user code end 2 */
 
   /* init freertos function. */
