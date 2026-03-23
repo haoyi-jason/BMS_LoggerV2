@@ -1,12 +1,10 @@
-# AI 協助韌體開發 Playbook
-
 ## 目標
 - 由UART介面接收訊息, 以CSV的格式儲存至SD卡
 - 提供USB MSD功能讓PC讀取SD卡內的檔案.
 ---
 
 ## 1. 環境參數
-- Repo / branch：`haoyi-jason/BMS_Logger` + main
+- Repo / branch：`haoyi-jason/BMS_LoggerV2` + main
 - 目標硬體：AT32F413RC/200MHz/HSE 8M/LSE 32.768K RTC
 - 關鍵外設: UART/SPI/CANBUS/
 - RTOS/框架：FreeRTOS 10.4.4/HAL Driver (AT32F413_Firmware_Library_V2.1.7, 外掛)
