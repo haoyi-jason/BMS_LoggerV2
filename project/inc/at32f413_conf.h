@@ -65,7 +65,7 @@ extern "C" {
 /*#define I2C_MODULE_ENABLED----------------------*/
 #define MISC_MODULE_ENABLED
 #define PWC_MODULE_ENABLED
-/*#define RTC_MODULE_ENABLED----------------------*/
+#define RTC_MODULE_ENABLED
 #define SDIO_MODULE_ENABLED
 /*#define SPI_MODULE_ENABLED----------------------*/
 /*#define TMR_MODULE_ENABLED----------------------*/
@@ -119,7 +119,7 @@ extern "C" {
 #endif
 #ifdef RTC_MODULE_ENABLED
 #include "at32f413_rtc.h"
-#include "rtc.h"
+//#include "rtc.h"
 #endif
 #ifdef SDIO_MODULE_ENABLED
 #include "at32f413_sdio.h"
