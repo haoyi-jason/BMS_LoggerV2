@@ -26,6 +26,7 @@
 
 #include "msc_diskio.h"
 #include "msc_bot_scsi.h"
+#include "at32_sdio.h"
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
@@ -119,8 +120,19 @@ usb_sts_type msc_disk_read(uint8_t lun, uint64_t addr, uint8_t *read_buf, uint32
       break;
     case SPI_FLASH_LUN:
       break;
-    case SD_LUN:
-      break;
+    case SD_LUN:{
+    	uint32_t sector = (uint32_t)(addr / 512);
+    	uint32_t count = len/512;
+    	sd_error_status_type ret;
+    	if(count == 1)
+    		ret = sd_block_read(read_buf,sector,512);
+    	else {
+			ret = sd_mult_blocks_read(read_buf,sector,512,count);
+		}
+    	if(ret != SD_OK)
+    		return USB_FAIL;
+
+    }break;
     default:
       break;
   }
@@ -152,8 +164,18 @@ usb_sts_type msc_disk_write(uint8_t lun, uint64_t addr, uint8_t *buf, uint32_t l
       break;
     case SPI_FLASH_LUN:
       break;
-    case SD_LUN:
-      break;
+    case SD_LUN:{
+    	uint32_t sector = (uint32_t)(addr/512);
+    	uint32_t count = len/512;
+    	sd_error_status_type ret;
+    	if(count == 1)
+    		ret = sd_block_write(buf,sector,512);
+    	else
+			ret = sd_mult_blocks_write(buf,sector,512,count);
+
+    	if(ret != SD_OK)
+    		return USB_FAIL;
+    }break;
     default:
       break;;
   }
@@ -185,6 +207,8 @@ usb_sts_type msc_disk_capacity(uint8_t lun, uint32_t *blk_nbr, uint32_t *blk_siz
     case SPI_FLASH_LUN:
       break;
     case SD_LUN:
+    	*blk_nbr = sd_card_info.card_capacity/512;
+    	*blk_size = 512;
       break;
     default:
       break;

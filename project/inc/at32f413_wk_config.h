@@ -131,6 +131,9 @@ extern "C" {
   /* init gpio function. */
   void wk_gpio_config(void);
 
+  /* init rtc function. */
+  void wk_rtc_init(void);
+
   /* init can2 function. */
   void wk_can2_init(void);
 

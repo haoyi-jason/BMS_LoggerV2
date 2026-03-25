@@ -55,6 +55,7 @@
 									<listOptionValue builtIn="false" value="&quot;../../../libraries/cmsis/cm4/core_support/&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;../../../libraries/cmsis/cm4/device_support/&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;../../inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:\SourceRespo\AT32_WS\BMS_Logger\AT32F413RCT7_BMS_Logger\project\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;../../../middlewares/usbd_drivers/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;../../../middlewares/3rd_party/fatfs/source&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;../../../middlewares/freertos/source/include&quot;"/>
@@ -135,8 +136,13 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.command.make.1291007570.427388595" name="Build command" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.command.make.1291007570"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.1531064259.2015844516" name="Remove command" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.1531064259"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id.2078693583.716118032" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id.2078693583"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.131765514" name="GNU Arm Cross Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.960370140"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.427858407" name="GNU Arm Cross C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.203063347"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.GNU_ELF" id="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform" isAbstract="false" osList="all" superClass="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform"/>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.131765514" name="GNU Arm Cross Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.960370140">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.247412874" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
+							</tool>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.427858407" name="GNU Arm Cross C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.203063347">
+								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.300401178" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
+							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.991951766" name="GNU Arm Cross C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1423749371"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.443756615" name="GNU Arm Cross C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.395897537"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.517567992" name="GNU Arm Cross C++ Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.linker.914680872"/>
@@ -180,8 +186,8 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level.784306833" name="Debug level" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.level"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.format.2053283516" name="Debug format" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.debugging.format"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.family.740821381" name="Arm family (-mcpu)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.family" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m4" valueType="enumerated"/>
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.1602770421" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.hard" valueType="enumerated"/>
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.1637630578" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.fpv4spd16" valueType="enumerated"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.1602770421" name="Float ABI" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.abi.hard" valueType="enumerated"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.1637630578" name="FPU Type" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.fpv4spd16" valueType="enumerated"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.name.1034666693" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.name" value="GNU Tools for ARM Embedded Processors" valueType="string"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.architecture.1784918346" name="Architecture" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.architecture" value="ilg.gnuarmeclipse.managedbuild.cross.option.architecture.arm" valueType="enumerated"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.495761389" name="Instruction set" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset" value="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.instructionset.thumb" valueType="enumerated"/>

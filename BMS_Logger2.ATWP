@@ -41,12 +41,24 @@
             <ModeSub name="Debug interface" value="SWD"/>
         </Mode>
     </DEBUG>
+    <RTC>
+        <Mode>
+            <ModeSub name="RTC_Enabled" value="TRUE"/>
+            <ModeSub name="RTC_Calendar" value="TRUE"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="Year" value="2026"/>
+            <ParametersSub name="Month" value="3"/>
+            <ParametersSub name="Date" value="24"/>
+        </Parameters>
+    </RTC>
     <SDIO1>
         <Mode>
             <ModeSub name="Mode" value="SD_4_bit"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="ClockFrequency" value="100000000"/>
+            <ParametersSub name="Clock_division" value="8"/>
+            <ParametersSub name="ClockFrequency" value="20000000"/>
         </Parameters>
     </SDIO1>
     <SYSTEM>
@@ -77,6 +89,7 @@
         <Parameters>
             <ParametersSub name="SDIO_Instance" value="SDIO1"/>
             <ParametersSub name="USBH_Instance" value="null"/>
+            <ParametersSub name="FF_USE_LFN" value="2"/>
             <ParametersSub name="FF_VOLUMES" value="1"/>
             <ParametersSub name="FF_FS_REENTRANT" value="1"/>
         </Parameters>
@@ -112,9 +125,12 @@
     <NVIC>
         <PendSV_Handler>1;15;0;1;0</PendSV_Handler>
         <SysTick_Handler>1;15;0;1;0</SysTick_Handler>
+        <TAMPER_IRQHandler>0;5;0;1;0</TAMPER_IRQHandler>
+        <RTC_IRQHandler>0;5;0;1;0</RTC_IRQHandler>
         <FLASH_IRQHandler>0;5;0;1;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;5;0;1;0</CRM_IRQHandler>
         <USART1_IRQHandler>0;5;0;1;0</USART1_IRQHandler>
+        <RTCAlarm_IRQHandler>0;5;0;1;0</RTCAlarm_IRQHandler>
         <USBFSWakeUp_IRQHandler>0;5;0;1;0</USBFSWakeUp_IRQHandler>
         <SDIO1_IRQHandler>0;5;0;1;0</SDIO1_IRQHandler>
         <CAN2_TX_IRQHandler>0;5;0;1;0</CAN2_TX_IRQHandler>
@@ -148,20 +164,20 @@
         <PinSub pinname="PC15/LEXT_OUT" signalname="CRM_LEXT_OUT" signaltype="2"/>
         <PinSub pinname="PD0/HEXT_IN" signalname="CRM_HEXT_IN" signaltype="2"/>
         <PinSub pinname="PD1/HEXT_OUT" signalname="CRM_HEXT_OUT" signaltype="2"/>
+        <PinSub pinname="PC0" signalname="SDIO1_D0" signaltype="2"/>
+        <PinSub pinname="PC1" signalname="SDIO1_D1" signaltype="2"/>
+        <PinSub pinname="PC2" signalname="SDIO1_D2" signaltype="2"/>
+        <PinSub pinname="PC3" signalname="SDIO1_D3" signaltype="2"/>
+        <PinSub pinname="PC4" signalname="SDIO1_CK" signaltype="2"/>
+        <PinSub pinname="PC5" signalname="SDIO1_CMD" signaltype="2"/>
         <PinSub pinname="PB12" signalname="CAN2_RX" signaltype="2"/>
         <PinSub pinname="PB13" signalname="CAN2_TX" signaltype="2"/>
-        <PinSub pinname="PC8" signalname="SDIO1_D0" signaltype="2"/>
-        <PinSub pinname="PC9" signalname="SDIO1_D1" signaltype="2"/>
         <PinSub pinname="PA9" signalname="USART1_TX" signaltype="2"/>
         <PinSub pinname="PA10" signalname="USART1_RX" signaltype="2"/>
         <PinSub pinname="PA11" signalname="USBFS_D-" signaltype="2"/>
         <PinSub pinname="PA12" signalname="USBFS_D+" signaltype="2"/>
         <PinSub pinname="PA13" signalname="DEBUG_JTMS_SWDIO" signaltype="2"/>
         <PinSub pinname="PA14" signalname="DEBUG_JTCK_SWCLK" signaltype="2"/>
-        <PinSub pinname="PC10" signalname="SDIO1_D2" signaltype="2"/>
-        <PinSub pinname="PC11" signalname="SDIO1_D3" signaltype="2"/>
-        <PinSub pinname="PC12" signalname="SDIO1_CK" signaltype="2"/>
-        <PinSub pinname="PD2" signalname="SDIO1_CMD" signaltype="2"/>
     </PINInfo>
     <ProjectInfomation>
         <ProjectName>BMS_Logger2</ProjectName>
@@ -169,7 +185,7 @@
         <ToolchainIDE>AT32_IDE</ToolchainIDE>
         <ARMCompiler>0</ARMCompiler>
         <BackupCode>false</BackupCode>
-        <KeepUserCode>false</KeepUserCode>
+        <KeepUserCode>true</KeepUserCode>
         <NotUsedPinAnalog>true</NotUsedPinAnalog>
         <CodeSplitIP>false</CodeSplitIP>
         <AddNecessaryFileFlag>true</AddNecessaryFileFlag>

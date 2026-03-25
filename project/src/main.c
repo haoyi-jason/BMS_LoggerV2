@@ -99,6 +99,9 @@ int main(void)
   /* init usart1 function. */
   wk_usart1_init();
 
+  /* init rtc function. */
+  wk_rtc_init();
+
   /* init sdio1 function. */
   wk_sdio1_init();
 

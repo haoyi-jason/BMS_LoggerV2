@@ -53,7 +53,7 @@ extern "C" {
 /* module define -------------------------------------------------------------*/
 #define ACC_MODULE_ENABLED
 /*#define ADC_MODULE_ENABLED----------------------*/
-/*#define BPR_MODULE_ENABLED----------------------*/
+#define BPR_MODULE_ENABLED
 #define CAN_MODULE_ENABLED
 /*#define CRC_MODULE_ENABLED----------------------*/
 #define CRM_MODULE_ENABLED
@@ -119,7 +119,7 @@ extern "C" {
 #endif
 #ifdef RTC_MODULE_ENABLED
 #include "at32f413_rtc.h"
-//#include "rtc.h"
+#include "rtc.h"
 #endif
 #ifdef SDIO_MODULE_ENABLED
 #include "at32f413_sdio.h"

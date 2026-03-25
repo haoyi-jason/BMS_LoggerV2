@@ -201,6 +201,12 @@ void wk_periph_clock_config(void)
   /* enable usb periph clock */
   crm_periph_clock_enable(CRM_USB_PERIPH_CLOCK, TRUE);
 
+  /* enable bpr periph clock */
+  crm_periph_clock_enable(CRM_BPR_PERIPH_CLOCK, TRUE);
+
+  /* enable pwc periph clock */
+  crm_periph_clock_enable(CRM_PWC_PERIPH_CLOCK, TRUE);
+
   /* enable can2 periph clock */
   crm_periph_clock_enable(CRM_CAN2_PERIPH_CLOCK, TRUE);
 }
@@ -255,8 +261,8 @@ void wk_gpio_config(void)
 
   /* gpio analog config */
   gpio_init_struct.gpio_mode = GPIO_MODE_ANALOG;
-  gpio_init_struct.gpio_pins = GPIO_PINS_13 | GPIO_PINS_0 | GPIO_PINS_1 | GPIO_PINS_2 | GPIO_PINS_3 | 
-                               GPIO_PINS_4 | GPIO_PINS_5 | GPIO_PINS_6 | GPIO_PINS_7;
+  gpio_init_struct.gpio_pins = GPIO_PINS_13 | GPIO_PINS_6 | GPIO_PINS_7 | GPIO_PINS_8 | GPIO_PINS_9 | 
+                               GPIO_PINS_10 | GPIO_PINS_11 | GPIO_PINS_12;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -278,6 +284,11 @@ void wk_gpio_config(void)
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOB, &gpio_init_struct);
 
+  gpio_init_struct.gpio_mode = GPIO_MODE_ANALOG;
+  gpio_init_struct.gpio_pins = GPIO_PINS_2;
+  gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+  gpio_init(GPIOD, &gpio_init_struct);
+
   /* add user code begin gpio_config 2 */
   /* LED status indicator on PB0 */
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
@@ -288,6 +299,47 @@ void wk_gpio_config(void)
   gpio_init(GPIOB, &gpio_init_struct);
   gpio_bits_reset(GPIOB, GPIO_PINS_0); /* LED off */
   /* add user code end gpio_config 2 */
+}
+
+/**
+  * @brief  init rtc function.
+  * @param  none
+  * @retval none
+  */
+void wk_rtc_init(void)
+{
+  /* add user code begin rtc_init 0 */
+  
+  /* add user code end rtc_init 0 */
+
+  calendar_type time_struct;
+
+  /* add user code begin rtc_init 1 */
+
+  /* add user code end rtc_init 1 */
+
+  pwc_battery_powered_domain_access(TRUE);
+
+  crm_rtc_clock_select(CRM_RTC_CLOCK_LICK);
+  crm_rtc_clock_enable(TRUE);
+  rtc_wait_update_finish();
+  rtc_wait_config_finish();
+  rtc_divider_set(32767);
+  rtc_wait_config_finish();
+
+  time_struct.year  = 2026;
+  time_struct.month = 3;
+  time_struct.date  = 24;
+  time_struct.hour  = 0;
+  time_struct.min   = 0;
+  time_struct.sec   = 0;
+  rtc_time_set(&time_struct);
+
+  bpr_rtc_output_select(BPR_RTC_OUTPUT_NONE);
+
+  /* add user code begin rtc_init 2 */
+
+  /* add user code end rtc_init 2 */
 }
 
 /**
@@ -365,7 +417,7 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_8;
+  gpio_init_struct.gpio_pins = GPIO_PINS_0;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -373,7 +425,7 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_9;
+  gpio_init_struct.gpio_pins = GPIO_PINS_1;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -381,7 +433,7 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_10;
+  gpio_init_struct.gpio_pins = GPIO_PINS_2;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -389,7 +441,7 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_11;
+  gpio_init_struct.gpio_pins = GPIO_PINS_3;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -397,7 +449,7 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_12;
+  gpio_init_struct.gpio_pins = GPIO_PINS_4;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
   gpio_init(GPIOC, &gpio_init_struct);
 
@@ -405,12 +457,15 @@ void wk_sdio1_init(void)
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-  gpio_init_struct.gpio_pins = GPIO_PINS_2;
+  gpio_init_struct.gpio_pins = GPIO_PINS_5;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
-  gpio_init(GPIOD, &gpio_init_struct);
+  gpio_init(GPIOC, &gpio_init_struct);
+
+  /* GPIO PIN remap */
+  gpio_pin_remap_config(SDIO1_GMUX_0100, TRUE); 
 
   /* configure param */
-  sdio_clock_config(SDIO1, 0, SDIO_CLOCK_EDGE_RISING);
+  sdio_clock_config(SDIO1, 8, SDIO_CLOCK_EDGE_RISING);
   sdio_power_saving_mode_enable(SDIO1, FALSE);
   sdio_flow_control_enable(SDIO1, FALSE);
   sdio_clock_bypass(SDIO1, FALSE);

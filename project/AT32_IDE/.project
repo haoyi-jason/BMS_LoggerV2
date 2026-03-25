@@ -35,6 +35,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/libraries/drivers/src/at32f413_acc.c</locationURI>
 		</link>
 		<link>
+			<name>firmware/at32f413_bpr.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/libraries/drivers/src/at32f413_bpr.c</locationURI>
+		</link>
+		<link>
 			<name>firmware/at32f413_can.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/libraries/drivers/src/at32f413_can.c</locationURI>

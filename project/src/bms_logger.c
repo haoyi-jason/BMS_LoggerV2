@@ -2,7 +2,7 @@
 /**
   **************************************************************************
   * @file     bms_logger.c
-  * @brief    BMS Logger — UART RX, SD card CSV logger, USB MSD mutex, LED
+  * @brief    BMS Logger �� UART RX, SD card CSV logger, USB MSD mutex, LED
   **************************************************************************
   */
 /* add user code end Header */
@@ -159,6 +159,11 @@ void bms_logger_init(void)
     snprintf(fname, sizeof(fname), "0:%04u%02u%02u_%02u%02u%02u.csv",
              t.year, t.mon, t.mday, t.hour, t.min, t.sec);
 
+#if FF_USE_LFN == 0
+#error "LFN is DISABLE"
+#endif
+
+//    snprintf(fname, sizeof(fname), "0:20260324_.csv");
     /* Open / create log file */
     fr = f_open(&log_file, fname, FA_WRITE | FA_CREATE_ALWAYS);
     if (fr != FR_OK) {
